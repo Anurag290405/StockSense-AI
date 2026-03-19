@@ -25,6 +25,11 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
+// Root endpoint for simple verification
+app.get('/', (req, res) => {
+  res.send('StockSense AI Backend is running! Access the API via the /api route.');
+});
+
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
