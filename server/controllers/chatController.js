@@ -6,20 +6,25 @@ const handleChat = async (req, res) => {
   try {
     const { message } = req.body;
     
-    if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === 'your_openai_api_key_here') {
+    if (!process.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY === 'your_openrouter_api_key_here') {
       return res.json(mockAIResponse(message));
     }
 
     const openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
+      baseURL: "https://openrouter.ai/api/v1",
+      apiKey: process.env.OPENROUTER_API_KEY,
+      defaultHeaders: {
+        "HTTP-Referer": "http://localhost:5173",
+        "X-Title": "StockSense AI",
+      }
     });
 
     const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
+      model: process.env.OPENROUTER_MODEL || "meta-llama/llama-3-8b-instruct:free",
       messages: [
         {
           role: "system",
-          content: "You are StockSense AI, a data-driven financial assistant.\n\nRules:\n- Explain stock concepts in simple, clear language\n- Do NOT give direct financial advice\n- Always include reasoning\n- Use bullet points when helpful\n- Be concise but insightful\n- If data is missing, make realistic assumptions\n- Output stock trends specifically with [BULLISH] or [BEARISH] tags when appropriate so the frontend can style them."
+          content: "You are StockSense AI, a data-driven financial assistant specializing in the Indian Stock Market (NSE/BSE).\n\nRules:\n- Focus your analysis on Indian equities (NIFTY, Sensex, etc.).\n- Explain stock concepts in simple, clear language\n- Do NOT give direct financial advice (adhere to basic SEBI compliance by adding a small disclaimer if necessary)\n- Always include reasoning\n- Use bullet points when helpful\n- Be concise but insightful\n- Output stock trends specifically with [BULLISH] or [BEARISH] tags when appropriate so the frontend can style them."
         },
         { role: "user", content: message }
       ],
@@ -43,20 +48,25 @@ const handleCSVUpload = async (req, res) => {
 
     const summaryPrompt = `Analyze the following dataset context. Identify trends, anomalies, and insights. Provide a structured explanation.\n\nData preview:\n${JSON.stringify(data.slice(0, 5))}`;
 
-    if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === 'your_openai_api_key_here') {
+    if (!process.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY === 'your_openrouter_api_key_here') {
       return res.json(mockCSVResponse(summaryPrompt));
     }
 
     const openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
+      baseURL: "https://openrouter.ai/api/v1",
+      apiKey: process.env.OPENROUTER_API_KEY,
+      defaultHeaders: {
+        "HTTP-Referer": "http://localhost:5173",
+        "X-Title": "StockSense AI",
+      }
     });
 
     const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
+      model: process.env.OPENROUTER_MODEL || "meta-llama/llama-3-8b-instruct:free",
       messages: [
         {
           role: "system",
-          content: "You are StockSense AI, a data-driven financial assistant analyzing CSV datasets."
+          content: "You are StockSense AI, a data-driven financial assistant analyzing CSV datasets with a focus on Indian markets."
         },
         { role: "user", content: summaryPrompt }
       ],
@@ -71,7 +81,7 @@ const handleCSVUpload = async (req, res) => {
 
 function mockAIResponse(message) {
   const lowercaseMessage = message.toLowerCase();
-  let reply = "I am a mock response because the OpenAI API key is missing. ";
+  let reply = "I am a mock response because the OpenRouter API key is missing. ";
 
   if (lowercaseMessage.includes("tcs")) {
     reply += "\n\n**Company Overview:** Tata Consultancy Services (TCS) is a global IT services, consulting, and business solutions leader.\n\n**Trend:** [BULLISH]\n\n**Key Indicators:**\n- Revenue Growth: Steady\n- Margins: Strong\n\n**Simple Explanation:** TCS is showing consistent growth thanks to strong demand in digital transition services.";

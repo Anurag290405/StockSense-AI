@@ -27,6 +27,10 @@ The frontend runs on `http://localhost:5173`.
 
 ## Deployment Guide
 
+### Live Application Links
+- **Frontend (Vercel)**: [https://stocksense-ai.vercel.app](https://stocksense-ai.vercel.app) *(Update to your actual Vercel link)*
+- **Backend (Render)**: [https://stocksense-server.onrender.com](https://stocksense-server.onrender.com) *(Update to your actual Render link)*
+
 ### Deploying Frontend (Vercel)
 1. Push this repository to GitHub.
 2. Go to Vercel and create a new project, selecting the `/client` directory.

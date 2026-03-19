@@ -53,14 +53,16 @@ export function MessageBubble({ message, onExplainLike5 }) {
           "flex flex-col gap-2 relative",
           isAI ? "items-start" : "items-end"
         )}>
-          <div className={cn(
-            "p-4 rounded-2xl shadow-sm text-sm leading-relaxed whitespace-pre-wrap",
-            isAI ? "bg-card border border-border text-card-foreground rounded-tl-sm" : "bg-primary text-primary-foreground rounded-tr-sm"
+          {isAI ? (
+            <div 
+              className="p-4 rounded-2xl shadow-sm text-sm leading-relaxed whitespace-pre-wrap bg-card border border-border text-card-foreground rounded-tl-sm"
+              dangerouslySetInnerHTML={{ __html: formatText(message.text) }}
+            />
+          ) : (
+            <div className="p-4 rounded-2xl shadow-sm text-sm leading-relaxed whitespace-pre-wrap bg-primary text-primary-foreground rounded-tr-sm">
+              {message.text}
+            </div>
           )}
-          dangerouslySetInnerHTML={isAI ? { __html: formatText(message.text) } : undefined}
-          >
-            {!isAI && message.text}
-          </div>
           
           {/* Chart placeholder */}
           {isAI && message.text.includes("[BULLISH]") && (
