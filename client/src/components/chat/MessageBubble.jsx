@@ -77,7 +77,6 @@ export function MessageBubble({ message, onExplainLike5 }) {
               </InsightCard>
             </div>
 
-            <div className="h-24 bg-gradient-to-r from-emerald-500/20 to-transparent rounded-lg mt-4 border border-slate-300 dark:border-slate-700" />
           </div>
         )}
 

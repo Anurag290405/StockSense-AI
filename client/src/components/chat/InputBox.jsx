@@ -5,17 +5,7 @@ export function InputBox({ input, setInput, onSend, isLoading, onUploadClick }) 
   return (
     <div className="sticky bottom-0 z-20 bg-slate-100 dark:bg-slate-900 border-t border-slate-300 dark:border-slate-700 px-4 py-4 transition-colors duration-200 ease-in-out">
       <div className="max-w-4xl mx-auto flex flex-col gap-3">
-        <div className="flex gap-2 overflow-x-auto pb-1">
-          {['Analyze NIFTY', 'Find bullish stocks', 'Summarize market risks'].map((item) => (
-            <button
-              key={item}
-              onClick={() => onSend(item)}
-              className="shrink-0 bg-gradient-to-br from-slate-100 to-white dark:from-slate-800 dark:to-slate-900 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-gray-300 rounded-xl px-3 py-1.5 text-xs cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 hover:scale-[1.02] hover:shadow-xl hover:border-emerald-500/30 transition-all duration-200 ease-in-out"
-            >
-              {item}
-            </button>
-          ))}
-        </div>
+     
 
         <div className="bg-gradient-to-br from-slate-100 to-white dark:from-slate-800 dark:to-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl shadow-lg p-2 flex items-center gap-2 transition-all duration-200 ease-in-out hover:border-emerald-500/30 hover:shadow-xl">
           <button

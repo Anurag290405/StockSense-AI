@@ -28,17 +28,6 @@ export function ChatWindow({
             <p className="text-slate-600 dark:text-gray-300">Ask about stocks, sectors, and market sentiment to get structured insights.</p>
           </div>
 
-          <div className="flex flex-wrap gap-2 mb-4 justify-center">
-            {['Analyze TCS', 'Compare INFY vs TCS', 'Find bullish sectors'].map((chip) => (
-              <button
-                key={chip}
-                onClick={() => onSend(chip)}
-                className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-gray-300 rounded-xl px-3 py-1.5 text-xs cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700 hover:scale-105 transition-all duration-200 ease-in-out"
-              >
-                {chip}
-              </button>
-            ))}
-          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {emptySuggestions.map((item) => (

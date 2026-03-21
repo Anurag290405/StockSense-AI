@@ -6,11 +6,7 @@ import { cn } from '../../lib/utils';
 export function Sidebar({ onSelectPrompt, onNewChat, isOpen, onClose }) {
   const [activeQuery, setActiveQuery] = useState(0);
 
-  const suggestedQueries = [
-    { label: "Analyze TCS", value: "Analyze TCS" },
-    { label: "Compare INFY vs TCS", value: "Compare INFY vs TCS" },
-    { label: "Market Trends", value: "Why is NIFTY rising?" },
-  ];
+  
 
   return (
     <>
@@ -45,24 +41,7 @@ export function Sidebar({ onSelectPrompt, onNewChat, isOpen, onClose }) {
         </div>
         
         <nav className="flex-1 overflow-y-auto px-4 flex flex-col gap-8">
-          <div>
-            <h2 className="px-2 text-xs font-semibold text-slate-500 dark:text-gray-400 uppercase tracking-wide mb-3">Suggested Queries</h2>
-            <div className="space-y-2">
-              {suggestedQueries.map((query, i) => (
-                <button
-                  key={i}
-                  onClick={() => { setActiveQuery(i); onSelectPrompt(query.value); onClose(); }}
-                  className={cn(
-                    'w-full text-left text-sm p-3 bg-gradient-to-br from-slate-100 to-white dark:from-slate-800 dark:to-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl cursor-pointer text-slate-700 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 hover:scale-[1.02] transition-all duration-200 ease-in-out flex items-center gap-3',
-                    activeQuery === i && 'bg-slate-200 dark:bg-slate-800 border-l-2 border-l-emerald-500 border-emerald-500/30'
-                  )}
-                >
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                  {query.label}
-                </button>
-              ))}
-            </div>
-          </div>
+          
           
           <div>
             <h2 className="px-2 text-xs font-semibold text-slate-500 dark:text-gray-400 uppercase tracking-wide mb-3">Saved Insights</h2>
