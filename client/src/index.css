@@ -1,16 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Sora:wght@500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
+    --background: 210 40% 98%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 160 84% 39%; /* Emerald Green */
+    --primary: 161 72% 38%; /* Emerald 500 */
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -18,34 +20,36 @@
     --muted-foreground: 215.4 16.3% 46.9%;
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%; /* Red */
+    --destructive: 0 84.2% 60.2%; /* Red 500 */
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 160 84% 39%;
-    --radius: 1rem;
+    --ring: 161 72% 38%;
+    --radius: 1.25rem;
+    --accent-warning: 45 93% 47%; /* amber-400 */
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 224 71% 4%; /* Slate-950/Deep Obsidian (#0b0f19) */
     --foreground: 210 40% 98%;
-    --card: 222.2 40% 7%;
+    --card: 222 47% 11%; /* Slate-900 */
     --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
+    --popover: 224 71% 4%;
     --popover-foreground: 210 40% 98%;
-    --primary: 160 84% 39%;
+    --primary: 161 72% 38%; /* emerald-500 */
     --primary-foreground: 210 40% 98%;
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 217 33% 17%; /* slate-800 */
     --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 17%;
     --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 84% 60%; /* red-500 */
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 160 84% 39%;
+    --border: 215 25% 27%; /* slate-700 */
+    --input: 215 25% 27%;
+    --ring: 161 72% 38%;
+    --accent-warning: 45 93% 47%; /* amber-400 */
   }
 }
 
@@ -54,21 +58,31 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased transition-colors duration-200 ease-in-out;
+    font-family: 'Space Grotesk', sans-serif;
   }
 }
 
-/* Custom Scrollbar */
+/* Custom transitions and scrollbar */
+::selection {
+  @apply bg-emerald-500/30 text-emerald-100;
+}
+
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  @apply bg-transparent;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-border rounded-full;
+  @apply bg-slate-400/70 dark:bg-slate-700/50 rounded-full hover:bg-slate-500 dark:hover:bg-slate-600;
 }
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-muted-foreground/50;
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
